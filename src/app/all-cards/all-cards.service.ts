@@ -9,9 +9,12 @@ export class AllCardsService {
 
   constructor() { }
 
-  async getAllCards() {
+  async getAllCards(page: number = 1) {
+    const offset = (page - 1) * 12;
     try {
-      const response = await axios.get(this.API_URL);
+      const response = await axios.get(this.API_URL, {
+        params: { num: 12, offset }
+      });
       return response.data.data;
     } catch (error) {
       console.error('Error fetching cards:', error);

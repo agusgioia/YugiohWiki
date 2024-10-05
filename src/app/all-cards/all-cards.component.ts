@@ -1,21 +1,23 @@
-import { Component,OnInit } from '@angular/core';
-import { AllCardsService } from './all-cards.service'
+import { Component, OnInit } from '@angular/core';
+import { AllCardsService } from './all-cards.service';
 import { CommonModule } from '@angular/common';
+
 interface Card {
   id: number;
   name: string;
   card_images: Array<{ image_url: string }>;
 }
-@Component({
-  selector: 'app-all-cards',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './all-cards.component.html',
-  styleUrl: './all-cards.component.css'
-})
 
+@Component({
+  standalone :true,
+  imports:[CommonModule],
+  selector: 'app-all-cards',
+  templateUrl: './all-cards.component.html',
+  styleUrls: ['./all-cards.component.css']
+})
 export class AllCardsComponent implements OnInit {
   cards: Card[] = [];
+  currentPage: number = 1;
 
   constructor(private allCardsService: AllCardsService) { }
 
@@ -25,9 +27,25 @@ export class AllCardsComponent implements OnInit {
 
   async fetchCards() {
     try {
-      this.cards = await this.allCardsService.getAllCards();
+      this.cards = await this.allCardsService.getAllCards(this.currentPage);
     } catch (error) {
       console.error('Error fetching cards:', error);
     }
+  }
+
+  nextPage() {
+    this.currentPage++;
+    this.fetchCards();
+  }
+
+  previousPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.fetchCards();
+    }
+  }
+
+  getCardImageUrl(cardId: number): string {
+    return `https://images.ygoprodeck.com/images/cards_small/${cardId}.jpg`;
   }
 }
