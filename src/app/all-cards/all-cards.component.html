@@ -1,4 +1,5 @@
 <div class="all-cards">
+    <img src="https://i.pinimg.com/originals/d1/7a/d8/d17ad80144ef56adbf58a17a686ea619.jpg" class="background-image">
     <div *ngFor="let card of cards; let i = index">
       <div *ngIf="i % 3 === 0" class="row">
         <div *ngFor="let subCard of cards.slice(i, i + 3)" class="card">
