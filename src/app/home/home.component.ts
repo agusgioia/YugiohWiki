@@ -5,17 +5,29 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.css'
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
   @ViewChild('audioPlayer') audioPlayer!: ElementRef; // Asegúrate de que esté correctamente inicializado
 
+  ngAfterViewInit(){
+    if (this.audioPlayer) {
+      console.log('El elemento de audio ha sido inicializado:', this.audioPlayer.nativeElement);
+    } else {
+      console.error('El elemento de audio no está disponible');
+    }
+  }
+
   playAudio() {
-    this.audioPlayer.nativeElement.play();
+    if (this.audioPlayer) {
+      this.audioPlayer.nativeElement.play();
+    }
   }
 
   stopAudio() {
-    this.audioPlayer.nativeElement.pause();
-    this.audioPlayer.nativeElement.currentTime = 0; // Reinicia el audio al inicio
+    if (this.audioPlayer) {
+      this.audioPlayer.nativeElement.pause();
+      this.audioPlayer.nativeElement.currentTime = 0; // Reinicia el audio al inicio
+    }
   }
 }
