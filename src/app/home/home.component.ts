@@ -12,6 +12,8 @@ export class HomeComponent {
   playAudio(audio: HTMLAudioElement) {
     audio.play().catch(error => console.error('Error al reproducir el audio:', error));
   }
+  
+  
 
   stopAudio(audio: HTMLAudioElement) {
     audio.pause();

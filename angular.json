@@ -20,12 +20,9 @@
               "zone.js"
             ],
             "tsConfig": "tsconfig.app.json",
-            "assets": [{
+            "assets": [
     		"src/favicon.ico",
-    		"src/assets",
-		"src/assets/audios",
-		"glob": "**/*",
-                "input": "public"}
+    		"src/assets"
 	    ],
             "styles": [
               "src/styles.css"
