@@ -1,0 +1,11 @@
+<input type="text" [(ngModel)]="query" (ngModelChange)="search()" placeholder="Buscar carta...">
+<select (change)="selectCard($event)">
+  <option *ngFor="let card of searchResults" [value]="card.name">
+    {{ card.name }}
+  </option>
+</select>
+<div *ngIf="selectedCard">
+  <h2>{{ selectedCard.name }}</h2>
+  <img [src]="selectedCard.card_images[0].image_url" alt="{{ selectedCard.name }}">
+  <!-- Añade más información sobre la carta aquí -->
+</div>
