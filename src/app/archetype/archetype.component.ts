@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ArchetypeService } from './archetype.service';
 import { FormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
@@ -10,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
   templateUrl: './archetype.component.html',
   styleUrls: ['./archetype.component.css'],
   standalone:true,
-  imports:[FormsModule,CommonModule,HttpClientModule],
+  imports:[FormsModule,CommonModule],
   providers:[ArchetypeService]
 })
 export class ArchetypeComponent implements OnInit {
